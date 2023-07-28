@@ -53,7 +53,11 @@ int main()
     
     size_t n = N;
     float in[N];
+#ifdef _MSC_VER
+    _Fcomplex out[N];
+#else
     float complex out[N];
+#endif
     float res[BAR_SIZE+3];
     float top_res[BAR_SIZE+3] = {0};
     float max, maxmax=0;
@@ -67,7 +71,7 @@ int main()
     for (size_t i = 20, j=0; i <= 20000; ++i) {
         int index = (int)((log10f(i)-log10f(20))/(span/BAR_SIZE));
         if (index >= j) {
-            snprintf(label[index], 50, "%d", i);
+            snprintf(label[index], 50, "%zu", i);
             ++j;
         }
     }

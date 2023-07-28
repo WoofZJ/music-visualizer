@@ -10,4 +10,8 @@ add_subdirectory("raylib")
 file(GLOB SRC "src/*.c")
 add_executable(music-visualizer ${SRC})
 
-target_link_libraries(music-visualizer PUBLIC raylib m)
+target_link_libraries(music-visualizer PUBLIC raylib)
+
+IF (NOT WIN32)
+  target_link_libraries(music-visualizer m)
+ENDIF()
